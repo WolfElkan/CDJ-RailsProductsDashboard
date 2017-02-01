@@ -1,0 +1,15 @@
+<table>
+	<tr>
+		<td><b>Name:<b></td>
+		<td><%= @product.name %></td>
+	</tr>
+	<tr>
+		<td><b>Description:<b></td>
+		<td><%= @product.description %></td>
+	</tr>
+	<tr>
+		<td><b>Price:<b></td>
+		<td><%= "$%.2f" % @product.price %></td>
+	</tr>
+</table>
+<a href="/products/<%= @product.id %>/edit">Edit</a> &#x2502; <a href="/products">Back</a>

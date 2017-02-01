@@ -1,0 +1,27 @@
+<h1>Listing products</h1>
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th></th>
+	</thead>
+	<% @products.each do |product| %>
+		<tr>
+			<td><%= product.name %></td>
+			<td><%= product.description %></td>
+			<td class="price"><%= "$%.2f" % product.price %></td>
+			<td>
+				<a href="/products/<%= product.id %>">Show</a> &#x2502; 
+				<a href="/products/<%= product.id %>/edit">Edit</a> &#x2502; 
+				<form class="link" action="/products/<%= product.id %>" method="post">
+					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					<input type="hidden" name="_method" value="delete">
+					<input type="hidden" name="product_id" value="<%= product.id %>">
+					<input class="link" type="submit" value="Destroy">
+				</form>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<a href="products/new">New Product</a>
