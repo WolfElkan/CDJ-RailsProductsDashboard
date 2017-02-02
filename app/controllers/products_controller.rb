@@ -9,8 +9,8 @@ class ProductsController < ApplicationController
 	end
 
 	def new
-		session.init categories: Category.all, product: Product.new, error: ""
-		@categories = session[:categories]
+		session.init product: Product.new, error: ""
+		@categories = Category.all
 		@product    = session[:product]
 		@error      = session[:error]
 		# render plain: session[:categories][3]['id']
@@ -33,6 +33,9 @@ class ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+		@categories = Category.all.to_a.collect do |category| 
+			selectable category, @product.category_id == category.id ? "selected" : ""
+		end
 	end
 
 	def update
@@ -45,14 +48,30 @@ class ProductsController < ApplicationController
 		redirect_to '/products'
 	end
 
+	def test
+		x = Category.all.collect { |c| selectable c }
+		x[2]['selected'] = "selected"
+		render plain: x
+		# render plain: Category.all[0].to_
+	end
+
 end
 
-	private
-	def product_params
-		{
-			name:        params[:name],
-			description: params[:description],
-			price:       params[:price],
-			category_id: params[:category_id]
-		}
-	end
+private
+def product_params
+	{
+		name:        params[:name],
+		description: params[:description],
+		price:       params[:price],
+		category_id: params[:category_id]
+	}
+end
+
+private
+def selectable category, selected
+	{
+		id:       category.id,
+		name:     category.name,
+		selected: selected
+	}
+end

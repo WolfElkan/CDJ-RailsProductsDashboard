@@ -8,7 +8,7 @@
 			<td class="field">
 				<select name="category_id">
 					<% @categories.each do |category| %>
-						<option value="<%= category['id'] %>"><%= category['name'] %></option>
+						<option value="<%= category[:id] %>" <%= category[:selected] %>><%= category[:name] %></option>
 					<% end %>
 				</select>
 			</td>

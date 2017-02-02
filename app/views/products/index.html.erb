@@ -11,7 +11,7 @@
 		<tr>
 			<td><%= product.name %></td>
 			<td><%= product.description %></td>
-			<td class="price"><%= "$%.2f" % product.price %></td>
+			<td class="price">$<%= number_with_precision(product.price, precision: 2, delimiter: ',') %></td>
 			<td><%= product.category %></td>
 			<td>
 				<a href="/products/<%= product.id %>">Show</a> &#x2502; 
