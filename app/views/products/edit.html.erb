@@ -4,6 +4,16 @@
 <input type="hidden" name="_method" value="put">
 	<table>
 		<tr>
+			<td>Category:</td>
+			<td class="field">
+				<select name="category_id">
+					<% @categories.each do |category| %>
+						<option value="<%= category['id'] %>"><%= category['name'] %></option>
+					<% end %>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td>Name:</td>
 			<td class="field">
 				<input type="text" name="name" value="<%= @product.name %>">
