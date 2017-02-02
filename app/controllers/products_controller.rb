@@ -9,9 +9,11 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @categories = Category.all
   end
 
   def create
+    # puts product_params
     Product.create(product_params)
     redirect_to '/products'
   end
@@ -37,6 +39,7 @@ end
     {
       name:        params[:name],
       description: params[:description],
-      price:       params[:price]
+      price:       params[:price],
+      category_id: params[:category_id]
     }
   end

@@ -3,6 +3,17 @@
 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 	<table>
 		<tr>
+			<td>Category:</td>
+			<td class="field">
+				<select name="category_id">
+					<option value="0">Pick category</option>
+					<% @categories.each do |category| %>
+						<option value="<%= category.id %>"><%= category.name %></option>
+					<% end %>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td>Name:</td>
 			<td class="field">
 				<input type="text" name="name">

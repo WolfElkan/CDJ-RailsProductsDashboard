@@ -4,6 +4,7 @@
 		<th>Name</th>
 		<th>Description</th>
 		<th>Price</th>
+		<th>Category</th>
 		<th></th>
 	</thead>
 	<% @products.each do |product| %>
@@ -11,6 +12,7 @@
 			<td><%= product.name %></td>
 			<td><%= product.description %></td>
 			<td class="price"><%= "$%.2f" % product.price %></td>
+			<td><%= product.category %></td>
 			<td>
 				<a href="/products/<%= product.id %>">Show</a> &#x2502; 
 				<a href="/products/<%= product.id %>/edit">Edit</a> &#x2502; 
