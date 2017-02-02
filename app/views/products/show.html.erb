@@ -17,3 +17,13 @@
 	</tr>
 </table>
 <a href="/products/<%= @product.id %>/edit">Edit</a> &#x2502; <a href="/products">Back</a>
+<h2>Comment:</h2>
+<form action="/comments" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input type="hidden" name="product_id" value="<%= @product.id %>">
+	<textarea name="content"></textarea>
+	<input type="submit">
+</form>
+<% @comments.each do |comment| %>
+<p><%= comment.content %> - <%= comment.created_at.localtime.strftime("%m/%d/%y") %></p>
+<% end %>

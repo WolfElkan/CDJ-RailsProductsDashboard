@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id])
+		@comments = Comment.where(product_id: @product.id)
 	end
 
 	def new
@@ -44,6 +45,7 @@ class ProductsController < ApplicationController
 	end
 
 	def destroy
+		Comment.where(product_id: params[:id])
 		Product.delete(params[:id])
 		redirect_to '/products'
 	end
